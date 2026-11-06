@@ -1,0 +1,15 @@
+.refresh-button-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 12px 0 4px;
+}
+
+.coin-item {
+  --background: #fdf2d0; // krem/kuning biar mirip mockup
+  margin: 0 12px 8px;
+  border-radius: 10px;
+}
+
+.price-label {
+  text-align: right;
+}

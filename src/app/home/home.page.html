@@ -1,0 +1,45 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Daftar Harga Crypto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!-- pull-to-refresh -->
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div class="refresh-button-wrapper">
+    <ion-button (click)="loadCoins()" [disabled]="isLoading()">
+      Refresh
+    </ion-button>
+  </div>
+
+  @if (errorMessage()) {
+    <div class="ion-padding">
+      <ion-text color="danger">{{ errorMessage() }}</ion-text>
+    </div>
+  } @else {
+    <ion-list lines="none">
+      @for (coin of coins(); track coin.id) {
+        <ion-item class="coin-item">
+          <ion-label>
+            <p>Rank</p>
+            <h2>{{ coin.rank }}</h2>
+          </ion-label>
+
+          <ion-label>
+            <p>{{ coin.name }}</p>
+            <h2>{{ coin.symbol }}</h2>
+          </ion-label>
+
+          <ion-label slot="end" class="price-label">
+            <p>USD</p>
+            <h2>{{ coin.price_usd }}</h2>
+          </ion-label>
+        </ion-item>
+      }
+    </ion-list>
+  }
+</ion-content>
